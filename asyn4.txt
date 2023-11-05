@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1> Student List from JSON </h1>
+    <hr>
+    <div id='student_data'></div>
+    <br>
+
+    <script>
+
+let get_sales_data = async() => {
+    let url = "students.json";
+    let response = await fetch (url);
+    const students = await response.json();
+
+    students.map((student) => {
+
+        const li=document.createElement("li");
+        li.innerText=student.name;
+        document.getElementById('student_data').appendChild(li);
+    });
+
+    
+  }
+
+  get_sales_data ();
+        
+
+    </script>
+</body>
+</html>
