@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Name List </h1>
+    <hr>
+    <ul id="users">
+
+    </ul>
+    <script>
+
+        async function getAPIUsers(){
+
+            const user_list=await fetch('https://jsonplaceholder.typicode.com/users');
+
+            const user_data=await user_list.json();
+
+            let user_names=user_data.map((user)=>{
+                return user.name;
+            });
+
+            let output='';
+
+            user_names.forEach(name => {
+                const li=document.createElement("li");
+                console.log(name);
+                li.innerText=name;
+                document.getElementById("users").appendChild(li);
+            });
+
+           
+
+        }
+
+        getAPIUsers();
+
+
+    </script>
+</body>
+</html>
