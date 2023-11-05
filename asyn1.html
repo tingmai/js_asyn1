@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        function makeRequest(url){
+            return new Promise((resolve,reject)=>{
+
+                console.log(`making request to ${url}`);
+
+                if(url==='Google'){
+                    resolve('Hi There ! ');
+                }
+                else{
+                    reject('We only talk to Google...');
+                }
+
+            });
+        }
+
+        function processRequst(response){
+
+            return new Promise((resolve,reject)=>{
+
+                console.log('processing request...')
+                resolve(`Google response : ${response}`)
+
+            })
+        }
+
+        /*
+        makeRequest('Facebook')
+         .then((response)=>{
+                console.log('Request Receivevd')
+                return processRequst(response);
+         })
+         .then((processResponse)=>{
+
+              console.log(processResponse);
+
+         })
+         .catch((err)=>{
+            console.log(err)
+         })
+
+         */
+
+
+         async function getConnection(){
+            try{
+             const res= await makeRequest('Facebook');
+             console.log('request received...')
+             const processRequest=await processRequst(res);
+             console.log(processRequest)
+            }
+            catch(err){
+                console.log(err)
+            }
+
+
+         }
+
+         getConnection();
+
+    </script>
+    
+</body>
+</html>
